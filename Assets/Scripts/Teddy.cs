@@ -7,6 +7,8 @@ public class Teddy : MonoBehaviour
     private NavMeshAgent agent;
     [SerializeField] private Transform target;
     public LayerMask layerMask;
+    [SerializeField] private Point[] Path;
+    private bool isOnWay = true;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
