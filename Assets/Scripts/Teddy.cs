@@ -6,6 +6,7 @@ public class Teddy : MonoBehaviour
 {
     private NavMeshAgent agent;
     [SerializeField] private Transform target;
+    public LayerMask layerMask;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -30,11 +31,22 @@ public class Teddy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            SetTarget(other.transform);
+            Vector3 dir = other.transform.position - transform.position;
+            dir.y = transform.position.y;
+            Ray ray= new Ray(transform.position,dir);
+            RaycastHit hit;
+
+            Physics.Raycast(ray, out hit,1000,layerMask);
+
+            if(hit.collider.tag == "Player") {
+                StopAllCoroutines();
+                SetTarget(other.transform);
+            }
+
         }
     }
     private void OnTriggerExit(Collider other)
@@ -47,7 +59,7 @@ public class Teddy : MonoBehaviour
 
     IEnumerator StopFollowing()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
         SetTarget(transform);
     }
 }
