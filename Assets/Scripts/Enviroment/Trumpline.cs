@@ -9,6 +9,7 @@ public class Trumpline : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")){
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.TrumpolineSound, transform.position);
 
             rb = other.gameObject.GetComponent<Rigidbody>();
             characterController = other.gameObject.GetComponent<CharacterController>();
