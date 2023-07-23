@@ -6,7 +6,7 @@ public class Teddy : MonoBehaviour
 {
     private NavMeshAgent agent;
 
-    private Vector3 startPos;
+    public Vector3 startPos;
     [SerializeField] private Transform target;
     public Transform FollowingPos;
     public LayerMask layerMask;
@@ -36,6 +36,8 @@ public class Teddy : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
+        Debug.Log("a");
+
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Player>().Kill();
@@ -60,6 +62,8 @@ public class Teddy : MonoBehaviour
 
         }
     }
+
+
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
@@ -76,12 +80,20 @@ public class Teddy : MonoBehaviour
 
     private void Restart()
     {
+        FollowingPos.position = startPos;
         rb.velocity = Vector3.zero;
         transform.position = startPos;
+        StopAllCoroutines();
+        target = FollowingPos;
     }
 
     private void OnDisable()
     {
         GameManager.Instance.OnReload -= Restart;
+    }
+
+    public void ChangeFollowingObject(Vector3 pos )
+    {
+        FollowingPos.position = pos;    
     }
 }

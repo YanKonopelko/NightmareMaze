@@ -124,7 +124,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 250
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -144,11 +144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad83d285e8cb0fd41a78026d03134ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  FollowingPos: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 129
-  Path: []
 --- !u!54 &4173303719772897975
 Rigidbody:
   m_ObjectHideFlags: 0
