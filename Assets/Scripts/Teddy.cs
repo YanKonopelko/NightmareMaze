@@ -32,6 +32,9 @@ public class Teddy : MonoBehaviour
     public void SetTarget(Transform target)
     {
         this.target = target;
+        if(target.tag == "Player")
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.DetectionSound, transform.position);
+
     }
 
     private void OnCollisionStay(Collision collision)
@@ -55,7 +58,7 @@ public class Teddy : MonoBehaviour
             RaycastHit hit;
 
             Physics.Raycast(ray, out hit,1000,layerMask);
-            if(hit.collider.tag == "Player") {
+            if(hit.collider.tag == "Player" && target.tag != "Player") {
                 StopAllCoroutines();
                 SetTarget(other.transform);
             }

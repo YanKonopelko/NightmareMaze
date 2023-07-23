@@ -8,6 +8,7 @@ public class Candy : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<Player>().Heal(healAmount);
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.HealSound,transform.position);
             Destroy(gameObject);
         }
     }

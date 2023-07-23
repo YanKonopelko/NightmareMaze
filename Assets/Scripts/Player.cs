@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public void DealDamage(int damage)
     {
         CameraController.instance.FadeOut();
+        SoundManager.Instance.PlaySound(SoundManager.SoundType.DamageSound, transform.position);
 
         animator.SetTrigger("Trigger Hit");
         _currentHitPoints -= damage;

@@ -9,6 +9,8 @@ public class Mine : MonoBehaviour
         {
             other.GetComponent<Player>().DealDamage(1); 
             Destroy(gameObject);
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.GlassSound, transform.position);
+
         }
     }
 }
