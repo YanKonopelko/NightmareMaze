@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class Teddy : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Vector3 startPos;
     [SerializeField] private Transform target;
     public LayerMask layerMask;
     [SerializeField] private Point[] Path;
@@ -12,6 +13,9 @@ public class Teddy : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        startPos = transform.position;
+        GameManager.Instance.OnReload += Restart;
+
     }
 
     void Update()
@@ -37,6 +41,7 @@ public class Teddy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Debug.Log("Eb");
             Vector3 dir = other.transform.position - transform.position;
             dir.y = transform.position.y;
             Ray ray= new Ray(transform.position,dir);
@@ -63,5 +68,15 @@ public class Teddy : MonoBehaviour
     {
         yield return new WaitForSeconds(6);
         SetTarget(transform);
+    }
+
+    private void Restart()
+    {
+        transform.position = startPos;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnReload -= Restart;
     }
 }

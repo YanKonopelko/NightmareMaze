@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     }
     public void DealDamage(int damage)
     {
+        CameraController.instance.FadeOut();
+
         animator.SetTrigger("Trigger Hit");
         _currentHitPoints -= damage;
         Debug.Log("Damaged");
@@ -32,7 +34,7 @@ public class Player : MonoBehaviour
 
     public void Kill()
     {
-        Destroy(gameObject);
+        GameManager.Instance.Load();
     }
     public void ChangeSpeed(bool isSlow)
     {
