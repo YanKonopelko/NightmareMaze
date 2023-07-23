@@ -4,8 +4,7 @@ public class Duck : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        var a = new CapsuleCollider();
-        if (other.gameObject.tag == "Player" && other.GetType() == a.GetType())
+        if (other.gameObject.tag == "Player" && other.GetType() == typeof(CapsuleCollider))
         {
             GameManager.Instance.curTeddy.SetTarget(transform);
             SoundManager.Instance.PlaySound(SoundManager.SoundType.DuckSound, transform.position);

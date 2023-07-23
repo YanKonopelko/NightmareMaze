@@ -17,4 +17,13 @@ public class Puddle : MonoBehaviour
             other.GetComponent<Player>().ChangeSpeed(false);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player" && other.GetType() == typeof(CapsuleCollider))
+        {
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.PuddleSound, transform.position);
+        }
+    }
+
 }

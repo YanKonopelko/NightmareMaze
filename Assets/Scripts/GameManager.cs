@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     private void Win()
     {
         WinPanel.SetActive(true);
+        Time.timeScale = 0;
     }
     private void OnTriggerEnter(Collider other)
     {

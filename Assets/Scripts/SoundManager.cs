@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public enum SoundType { DuckSound = 0, DamageSound, HealSound, BallSound, GlassSound,TrumpolineSound,DetectionSound };
+    public enum SoundType { DuckSound = 0, DamageSound, HealSound, BallSound, GlassSound,TrumpolineSound,DetectionSound,PuddleSound };
 
     private List<AudioSource> source = new List<AudioSource>();
 
