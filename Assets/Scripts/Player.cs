@@ -36,6 +36,15 @@ public class Player : MonoBehaviour
     {
         GameManager.Instance.Load();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Kill();
+        }
+    }
+
     public void ChangeSpeed(bool isSlow)
     {
         Controller.speedModifier =  isSlow ? 0.65f : 1;

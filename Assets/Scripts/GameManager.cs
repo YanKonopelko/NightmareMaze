@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private Transform spawnPoint;
     [SerializeField] private Transform Player;
     public Action OnReload;
+
+    [SerializeField] private GameObject WinPanel;
     void Awake()
     {
         Instance = this;
@@ -30,5 +32,15 @@ public class GameManager : MonoBehaviour
         curTeddy = teddy;  
     }
 
-
+    private void Win()
+    {
+        WinPanel.SetActive(true);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            Win();
+        }
+    }
 }
