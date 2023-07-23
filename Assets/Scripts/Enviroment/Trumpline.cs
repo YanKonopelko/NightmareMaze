@@ -17,7 +17,7 @@ public class Trumpline : MonoBehaviour
             characterController.enabled = false;
             rb.useGravity = true;
 
-            rb.velocity += Vector3.up*force ;
+            rb.velocity = Vector3.up*force ;
 
             ReturnPlayerControl();
         }
