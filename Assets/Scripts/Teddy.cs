@@ -5,17 +5,22 @@ using UnityEngine.AI;
 public class Teddy : MonoBehaviour
 {
     private NavMeshAgent agent;
+
     private Vector3 startPos;
     [SerializeField] private Transform target;
+    public Transform FollowingPos;
     public LayerMask layerMask;
-    [SerializeField] private Point[] Path;
-    private bool isOnWay = true;
+
+    private Rigidbody rb;
+
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         startPos = transform.position;
         GameManager.Instance.OnReload += Restart;
-
+        rb = GetComponent<Rigidbody>();
+        target = transform;
     }
 
     void Update()
@@ -29,7 +34,7 @@ public class Teddy : MonoBehaviour
         this.target = target;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -48,7 +53,6 @@ public class Teddy : MonoBehaviour
             RaycastHit hit;
 
             Physics.Raycast(ray, out hit,1000,layerMask);
-
             if(hit.collider.tag == "Player") {
                 StopAllCoroutines();
                 SetTarget(other.transform);
@@ -67,11 +71,12 @@ public class Teddy : MonoBehaviour
     IEnumerator StopFollowing()
     {
         yield return new WaitForSeconds(6);
-        SetTarget(transform);
+        SetTarget(FollowingPos);
     }
 
     private void Restart()
     {
+        rb.velocity = Vector3.zero;
         transform.position = startPos;
     }
 
