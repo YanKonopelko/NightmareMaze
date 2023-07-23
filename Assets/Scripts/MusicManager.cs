@@ -24,9 +24,9 @@ public class MusicManager : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
 
-        volume = (PlayerPrefs.HasKey("MUSIC_VOLUME")) ? PlayerPrefs.GetFloat("MUSIC_VOLUME") : volume;
-        volume *= volumeK;
-
+        //volume = (PlayerPrefs.HasKey("MUSIC_VOLUME")) ? PlayerPrefs.GetFloat("MUSIC_VOLUME") : volume;
+        //volume *= volumeK;
+            
         curTime = 0;
         ChangeMusic(MusicType.MainMenuMusic);
 
