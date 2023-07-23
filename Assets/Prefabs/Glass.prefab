@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4550187449105700792}
   - component: {fileID: 1702529269737364353}
   m_Layer: 0
-  m_Name: Mine
+  m_Name: Glass
   m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
